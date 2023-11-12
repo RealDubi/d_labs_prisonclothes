@@ -4,12 +4,13 @@ FrameWork = Config.FrameWork
 
 RegisterNetEvent("d-labs:c:setclothes") -- prison outfit event
 AddEventHandler("d-labs:c:setclothes", function()
-    print('test1')
     local ped = PlayerPedId()
     RequestAnimDict('mech_inventory@clothing@outfit_change')
     while not HasAnimDictLoaded('mech_inventory@clothing@outfit_change') do
         Citizen.Wait(0)
     end
+
+    RemoveAllPedWeapons(ped, true, true)
 
     TaskPlayAnim(ped, 'mech_inventory@clothing@outfit_change', 'outfit_change_unarmed', 4.0, 4.0, -1, 25, 0, false, false, false) -- start animace )¨
 
@@ -19,12 +20,7 @@ AddEventHandler("d-labs:c:setclothes", function()
     if hasPrison == false then
         TriggerEvent("Notification:left", 'successe', Config.Translation.PrisonOn, Config.Notif.alert[1], Config.Notif.alert[2], 4000)
         hasPrison = true
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x9925C067, true, true, true)
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x485EE834, true, true, true)
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x18729F39, true, true, true)
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3107499B, true, true, true)
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3C1A74CD, true, true, true)
-        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3F1F01E5, true, true, true)
+
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3F7F3587, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x49C89D9B, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x4A73515C, true, true, true)
@@ -33,6 +29,12 @@ AddEventHandler("d-labs:c:setclothes", function()
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x79D7DF96, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x7A96FACA, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x877A2CF7, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x9925C067, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x485EE834, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x18729F39, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3107499B, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3C1A74CD, true, true, true)
+        Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3F1F01E5, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x9B2C8B89, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0xA6D134C6, true, true, true)
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0xE06D30CE, true, true, true)
@@ -59,17 +61,14 @@ AddEventHandler("d-labs:c:setclothes", function()
         hasPrison = false
 
         if FrameWork == 'RSG' then
-            TriggerServerEvent("rsg-appearance:LoadSkin")
+            ExecuteCommand("db")
 
         elseif FrameWork == 'VORP' then
             ExecuteCommand("rc")
-            TriggerEvent("vorpcharacter:refreshPlayerSkin")
         else 
             ExecuteCommand(Config.Reset)
         end
     end
-
-    RemoveAllPedWeapons(ped, true, true)
 
     ClearPedTasks(ped)
     
@@ -85,9 +84,9 @@ AddEventHandler('Notification:left', function(t1, t2, dict, txtr, timer)
         end
     end
     if txtr ~= nil then
-        exports.d_labs_prisonslothes.LeftNot(0, tostring(t1), tostring(t2), tostring(dict), tostring(txtr), tonumber(timer))
+        exports.d_labs_prisonclothes.LeftNot(0, tostring(t1), tostring(t2), tostring(dict), tostring(txtr), tonumber(timer))
     else
         local txtr = "tick"
-        exports.d_labs_prisonslothes.LeftNot(0, tostring(t1), tostring(t2), tostring(dict), tostring(txtr), tonumber(timer))
+        exports.d_labs_prisonclothes.LeftNot(0, tostring(t1), tostring(t2), tostring(dict), tostring(txtr), tonumber(timer))
     end
 end)
