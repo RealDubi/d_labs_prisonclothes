@@ -4,7 +4,7 @@ game "rdr3"
 lua54 'yes'
 
 author 'D-Labs'
-version '1.0'
+version '1.1'
 description 'Prison clothing'
 
 escrow_ignore {
@@ -12,6 +12,8 @@ escrow_ignore {
     'server/*.lua',
     'client/*.lua'
 }
+
+files {'not.js'}
 
 client_scripts {
     'not.js',
@@ -21,8 +23,6 @@ client_scripts {
 shared_script {
     'config.lua'
 }
-
-files {'not.js'}
 
 server_script {
     'server/server.lua'
