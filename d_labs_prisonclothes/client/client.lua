@@ -18,7 +18,7 @@ AddEventHandler("d-labs:c:setclothes", function()
 
 
     if hasPrison == false then
-        TriggerEvent("Notification:left", 'successe', Config.Translation.PrisonOn, Config.Notif.alert[1], Config.Notif.alert[2], 4000)
+        TriggerEvent("Notification:left", 'success', Config.Translation.PrisonOn, Config.Notif.alert[1], Config.Notif.alert[2], 4000)
         hasPrison = true
 
         Citizen.InvokeNative(0xDF631E4BCE1B1FC4, ped, 0x3F7F3587, true, true, true)
@@ -57,7 +57,7 @@ AddEventHandler("d-labs:c:setclothes", function()
         end
 
     else
-        TriggerEvent("Notification:left", 'successe', Config.Translation.PrisonOff, Config.Notif.alert[1], Config.Notif.alert[2], 4000)
+        TriggerEvent("Notification:left", 'success', Config.Translation.PrisonOff, Config.Notif.alert[1], Config.Notif.alert[2], 4000)
         hasPrison = false
 
         if FrameWork == 'RSG' then
